@@ -1,0 +1,17 @@
+<!-- app/views/shared/_header.html.erb -->
+<header class="absolute inset-x-0 top-0 z-50">
+  <%= render 'shared/nav', 
+    company_name: company_name, 
+    logo_url: logo_url, 
+    root_path: root_path, 
+    nav_links: nav_links, 
+    login_link: login_link 
+  %>
+  <%= render 'shared/mobile_menu', 
+    company_name: company_name, 
+    logo_url: logo_url, 
+    root_path: root_path, 
+    mobile_links: nav_links, 
+    login_link: login_link 
+  %>
+</header>
