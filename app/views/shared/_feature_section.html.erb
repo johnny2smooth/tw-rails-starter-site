@@ -1,0 +1,55 @@
+<%# 
+  Locals expected:
+    • eyebrow    – small uppercase heading (string)
+    • headline   – large section title (string)
+    • copy       – intro paragraph (string)
+    • features   – array of hashes, each: 
+         { title:, description:, icon_svg: } 
+         where icon_svg is a raw-HTML string of the <svg>…</svg>
+    • image      – hash { src:, alt:, class: } for the right-hand img
+%>
+<div class="overflow-hidden bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 
+                sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+      
+      <div class="lg:pt-4 lg:pr-8">
+        <div class="lg:max-w-lg">
+          <h2 class="text-base/7 font-semibold text-indigo-600">
+            <%= eyebrow %>
+          </h2>
+
+          <p class="mt-2 text-4xl font-semibold tracking-tight 
+                     text-pretty text-gray-900 sm:text-5xl">
+            <%= headline %>
+          </p>
+
+          <p class="mt-6 text-lg/8 text-gray-700">
+            <%= copy %>
+          </p>
+
+          <dl class="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 
+                      lg:max-w-none">
+            <% features.each do |f| %>
+              <div class="relative pl-9">
+                <dt class="inline font-semibold text-gray-900">
+                  <%= f[:icon_svg].html_safe %>
+                  <%= f[:title] %>
+                </dt>
+                <dd class="inline">
+                  <%= f[:description] %>
+                </dd>
+              </div>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+
+      <div>
+        <%= image_tag image[:src],
+              alt:   image[:alt],
+              class: image[:class] %>
+      </div>
+    </div>
+  </div>
+</div>
