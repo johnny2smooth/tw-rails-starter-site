@@ -1,0 +1,199 @@
+
+<%#
+Locals:
+  • form        – Hash with:
+      • action – String
+      • method – String
+      • cancel – { text:, url:, html_options: }
+      • submit – { text:, html_options: }
+      • sections – Array of section-hashes:
+          { title:, description:, wrapper_class:, fields: Array of field-hashes }
+  Field-hash types:
+    • { type: "text_with_prefix",  id:, name:, prefix:, placeholder:, wrapper_class: }
+    • { type: "text",              id:, name:, label:, autocomplete:, wrapper_class: }
+    • { type: "textarea",          id:, name:, rows:, wrapper_class:, helper: }
+    • { type: "file_change",       id:, label:, wrapper_class:, button_text:, button_html: }
+    • { type: "cover_upload",      id:, label:, wrapper_class: }
+    • { type: "select",            id:, name:, label:, options:, autocomplete:, wrapper_class: }
+    • { type: "checkbox_group",    legend:, description:, wrapper_class:, items: [{id:,name:,label:,description:,checked:}] }
+    • { type: "radio_group",       legend:, description:, wrapper_class:, items: [{id:,name:,label:,checked:}] }
+%>
+
+<% form[:sections].each do |sec| %>
+  <div class="<%= sec[:wrapper_class] %> border-b border-gray-900/10 pb-12">
+    <h2 class="text-base/7 font-semibold text-gray-900"><%= sec[:title] %></h2>
+    <p class="mt-1 text-sm/6 text-gray-600"><%= sec[:description] %></p>
+
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <% sec[:fields].each do |f| %>
+        <% case f[:type]
+           when "text_with_prefix" %>
+          <div class="<%= f[:wrapper_class] %>">
+            <label for="<%= f[:id] %>" class="block text-sm/6 font-medium text-gray-900">
+              <%= f[:label] %>
+            </label>
+            <div class="mt-2 flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300
+                        focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+              <div class="shrink-0 text-base text-gray-500 select-none sm:text-sm/6">
+                <%= f[:prefix] %>
+              </div>
+              <input
+                id="<%= f[:id] %>"
+                name="<%= f[:name] %>"
+                type="text"
+                placeholder="<%= f[:placeholder] %>"
+                class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900
+                       placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+              />
+            </div>
+          </div>
+
+        <% when "text" %>
+          <div class="<%= f[:wrapper_class] %>">
+            <label for="<%= f[:id] %>" class="block text-sm/6 font-medium text-gray-900">
+              <%= f[:label] %>
+            </label>
+            <div class="mt-2">
+              <input
+                id="<%= f[:id] %>"
+                name="<%= f[:name] %>"
+                type="<%= f[:type_input] || 'text' %>"
+                autocomplete="<%= f[:autocomplete] %>"
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900
+                       outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400
+                       focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              />
+            </div>
+          </div>
+
+        <% when "textarea" %>
+          <div class="<%= f[:wrapper_class] %>">
+            <label for="<%= f[:id] %>" class="block text-sm/6 font-medium text-gray-900">
+              <%= f[:label] %>
+            </label>
+            <div class="mt-2">
+              <textarea
+                id="<%= f[:id] %>"
+                name="<%= f[:name] %>"
+                rows="<%= f[:rows] %>"
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900
+                       outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400
+                       focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              ></textarea>
+            </div>
+            <% if f[:helper] %>
+              <p class="mt-3 text-sm/6 text-gray-600"><%= f[:helper] %></p>
+            <% end %>
+          </div>
+
+        <% when "file_change" %>
+          <div class="<%= f[:wrapper_class] %>">
+            <label class="block text-sm/6 font-medium text-gray-900"><%= f[:label] %></label>
+            <div class="mt-2 flex items-center gap-x-3">
+              <%= f[:icon_svg].html_safe if f[:icon_svg] %>
+              <button
+                type="button"
+                <%= f[:button_html].map { |k,v| "#{k}=\"#{v}\"" }.join(" ") %>
+              ><%= f[:button_text] %></button>
+            </div>
+          </div>
+
+        <% when "cover_upload" %>
+          <div class="<%= f[:wrapper_class] %>">
+            <label class="block text-sm/6 font-medium text-gray-900"><%= f[:label] %></label>
+            <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+              <div class="text-center">
+                <%= f[:icon_svg].html_safe if f[:icon_svg] %>
+                <div class="mt-4 flex text-sm/6 text-gray-600">
+                  <label for="<%= f[:id] %>" class="relative cursor-pointer rounded-md bg-white font-semibold
+                                                     text-indigo-600 focus-within:ring-2 focus-within:ring-indigo-600
+                                                     focus-within:ring-offset-2 focus-within:outline-hidden hover:text-indigo-500">
+                    <span>Upload a file</span>
+                    <input id="<%= f[:id] %>" type="file" name="<%= f[:name] %>" class="sr-only" />
+                  </label>
+                  <p class="pl-1">or drag and drop</p>
+                </div>
+                <p class="text-xs/5 text-gray-600"><%= f[:helper] %></p>
+              </div>
+            </div>
+          </div>
+
+        <% when "select" %>
+          <div class="<%= f[:wrapper_class] %>">
+            <label for="<%= f[:id] %>" class="block text-sm/6 font-medium text-gray-900"><%= f[:label] %></label>
+            <div class="mt-2 grid grid-cols-1">
+              <select
+                id="<%= f[:id] %>"
+                name="<%= f[:name] %>"
+                autocomplete="<%= f[:autocomplete] %>"
+                class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3
+                       text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 
+                       focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+              >
+                <% f[:options].each do |opt| %>
+                  <option><%= opt %></option>
+                <% end %>
+              </select>
+              <%= f[:icon_svg].html_safe if f[:icon_svg] %>
+            </div>
+          </div>
+
+        <% when "checkbox_group" %>
+          <fieldset class="<%= f[:wrapper_class] %>">
+            <legend class="text-sm/6 font-semibold text-gray-900"><%= f[:legend] %></legend>
+            <% if f[:description] %>
+              <p class="mt-1 text-sm/6 text-gray-600"><%= f[:description] %></p>
+            <% end %>
+            <div class="mt-6 space-y-6">
+              <% f[:items].each do |it| %>
+                <div class="flex gap-3">
+                  <input
+                    id="<%= it[:id] %>"
+                    name="<%= it[:name] %>"
+                    type="checkbox"
+                    <%= "checked" if it[:checked] %>
+                    class="h-6 w-6 rounded-sm border-gray-300 checked:bg-indigo-600 checked:border-indigo-600
+                           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  />
+                  <label for="<%= it[:id] %>" class="text-sm/6 font-medium text-gray-900"><%= it[:label] %></label>
+                  <p id="<%= it[:id] %>-desc" class="text-gray-500"><%= it[:description] %></p>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+
+        <% when "radio_group" %>
+          <fieldset class="<%= f[:wrapper_class] %>">
+            <legend class="text-sm/6 font-semibold text-gray-900"><%= f[:legend] %></legend>
+            <% if f[:description] %>
+              <p class="mt-1 text-sm/6 text-gray-600"><%= f[:description] %></p>
+            <% end %>
+            <div class="mt-6 space-y-6">
+              <% f[:items].each do |it| %>
+                <div class="flex items-center gap-x-3">
+                  <input
+                    id="<%= it[:id] %>"
+                    name="<%= it[:name] %>"
+                    type="radio"
+                    <%= "checked" if it[:checked] %>
+                    class="h-6 w-6 rounded-full border-gray-300 checked:bg-indigo-600 checked:border-indigo-600
+                           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  />
+                  <label for="<%= it[:id] %>" class="block text-sm/6 font-medium text-gray-900"><%= it[:label] %></label>
+                </div>
+              <% end %>
+            </div>
+          </fieldset>
+
+        <% end %>  <!-- closes case -->
+
+      <% end %>    <!-- closes fields each -->
+    </div>
+  </div>
+<% end %>  <!-- closes sections each -->
+
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <%= link_to form[:cancel][:text], form[:cancel][:url], form[:cancel][:html_options] %>
+    <%= submit_tag form[:submit][:text], form[:submit][:html_options] %>
+  </div>
+</form>

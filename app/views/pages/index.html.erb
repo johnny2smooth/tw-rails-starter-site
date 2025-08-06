@@ -1,20 +1,10 @@
 <%# app/views/pages/index.html.erb %>
 <%# — HEADER / NAV — %>
-<%= render 'shared/header',
-      company_name: @page.company_name,
-      logo_url:     @page.logo_url,
-      root_path:    @page.root_path,
-      nav_links:    @page.nav_links,
-      login_link:   @page.login_link %>
+<%= render 'shared/header', @page.header_section %>
 
 <%# render 'shared/header_navigation', @page.header_section %>
 <%# — HERO BANNER — %>
-<%= render 'shared/hero_banner',
-      title:        @page.hero_title,
-      subtitle:     @page.hero_subtitle,
-      announcement: @page.hero_announcement,
-      primary:      @page.hero_primary,
-      secondary:    @page.hero_secondary %>
+<%= render 'shared/hero_banner', @page.hero_banner_section %>
 
 <%# render 'shared/event_banner', @page.event_banner_section %>
 
@@ -30,3 +20,4 @@
 <%= render 'shared/leadership_section', @page.leadership_section %>
 <%= render 'shared/workflow_section', @page.workflow_section %>
 <%= render 'shared/trusted_by_section', @page.trusted_by_section %>
+<%= render 'shared/settings_form', form: @page.settings_form %>

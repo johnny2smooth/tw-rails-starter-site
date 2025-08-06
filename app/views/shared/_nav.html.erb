@@ -1,21 +1,28 @@
-<!-- app/views/shared/_nav.html.erb -->
-<nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
+<%#
+Locals:
+  • company_name – String
+  • logo_url     – String
+  • root_path    – String
+  • nav_links    – Array of { title:, url: }
+  • login_link   – { title:, url: }
+%>
+<nav aria-label="Global" class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
   <div class="flex lg:flex-1">
-    <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
+    <%= link_to "/", class: "-m-1.5 p-1.5" do %>
       <span class="sr-only"><%= company_name %></span>
       <%= image_tag logo_url, alt: company_name, class: "h-8 w-auto" %>
     <% end %>
   </div>
 
   <div class="hidden lg:flex lg:gap-x-12">
-<% nav_links.each do |link| %>
-  <%= link_to link[:title], link[:path],
-        class: "text-sm/6 font-semibold text-gray-900" %>
-<% end %>
+    <% nav_links.each do |link| %>
+      <%= link_to link[:title], link[:url], class: "text-sm/6 …" %>
+    <% end %>
   </div>
 
   <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-    <%= link_to login_link[:title],
-                login_link[:url], class: "text-sm/6 font-semibold text-gray-900" %>
+    <%= link_to "#{login_link[:title]} <span aria-hidden='true'>&rarr;</span>".html_safe,
+                login_link[:url],
+                class: "text-sm/6 font-semibold text-gray-900" %>
   </div>
 </nav>

@@ -2,6 +2,10 @@
 class HomePagePresenter
   # If you need URL helpers, you can pass in view_context
   # def initialize(view_context); @view = view_context; end
+  include Rails.application.routes.url_helpers
+
+  # so page_path works
+  def default_url_options; {} end
 
   def company_name
     "Your Company"
@@ -17,15 +21,25 @@ class HomePagePresenter
 
   def nav_links
     [
-      { title: "Product",     path: "#" },
-      { title: "Features",    path: "#" },
-      { title: "Marketplace", path: "#" },
-      { title: "Company",     path: "#" }
+      { title: "Product",     url: page_path("product") },
+      { title: "Features",    url: page_path("features") },
+      { title: "Marketplace", url: page_path("marketplace") },
+      { title: "Company",     url: page_path("company") }
     ]
   end
 
   def login_link
     { title: "Log in", path: "#" }
+  end
+
+  def nav_section
+    {
+      company_name: company_name,
+      logo_url:     logo_url,
+      root_path:    root_path,
+      nav_links:    nav_links,
+      login_link:   login_link
+    }
   end
 
   # Hero banner
@@ -67,6 +81,40 @@ class HomePagePresenter
     }
   end
 
+  def hero_banner_section
+    {
+      # Either nil (no banner) or a hash:
+      announcement: {
+        text:      "Announcing our next round of funding.",
+        link_text: "Read more →",
+        link_url:  page_path("home")  # or wherever your announcement lives
+      },
+
+      # Main headings
+      title:    "A better workflow",
+      subtitle: "Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas.",
+
+      # Primary CTA button
+      primary: {
+        text: "Get started",
+        url:  page_path("product"),
+        html_options: {
+          class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white " \
+                 "shadow-xs hover:bg-indigo-500 focus-visible:outline-2 " \
+                 "focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        }
+      },
+
+      # Secondary link
+      secondary: {
+        text: "Learn more →",
+        url:  page_path("product/features"),
+        html_options: {
+          class: "text-sm/6 font-semibold text-gray-900"
+        }
+      }
+    }
+  end
   # Feature section
   def feature_section
     {
@@ -871,4 +919,125 @@ class HomePagePresenter
       SVG
     }
   end
+  def settings_form
+    {
+      action: "#",
+      method: "POST",
+      cancel: {
+        text: "Cancel",
+        url:  "#",
+        html_options: { class: "text-sm/6 font-semibold text-gray-900" }
+      },
+      submit: {
+        text: "Save",
+        html_options: {
+          class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        }
+      },
+      sections: [
+        {
+          title:       "Profile",
+          description: "This information will be displayed publicly so be careful what you share.",
+          wrapper_class: "border-b border-gray-900/10 pb-12",
+          fields: [
+            {
+              type:         "text_with_prefix",
+              id:           "username",
+              name:         "username",
+              label:        "Username",
+              prefix:       "workcation.com/",
+              placeholder:  "janesmith",
+              wrapper_class: "sm:col-span-4"
+            },
+            {
+              type:         "textarea",
+              id:           "about",
+              name:         "about",
+              label:        "About",
+              rows:         3,
+              helper:       "Write a few sentences about yourself.",
+              wrapper_class: "col-span-full"
+            },
+            {
+              type:          "file_change",
+              id:            "photo",
+              label:         "Photo",
+              icon_svg:      nil, # optional svg if you want
+              button_text:   "Change",
+              button_html:   { class: "rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50" },
+              wrapper_class: "col-span-full"
+            },
+            {
+              type:          "cover_upload",
+              id:            "cover-photo",
+              name:          "file-upload",
+              label:         "Cover photo",
+              icon_svg:     <<~SVG,
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="mx-auto size-12 text-gray-300">
+                  <path d="M1.5 6a2.25 2.25 0 ..."/>
+                </svg>
+              SVG
+              helper:       "PNG, JPG, GIF up to 10MB",
+              wrapper_class: "col-span-full"
+            }
+          ]
+        },
+        {
+          title:       "Personal Information",
+          description: "Use a permanent address where you can receive mail.",
+          wrapper_class: "border-b border-gray-900/10 pb-12",
+          fields: [
+            { type: "text", id: "first-name", name: "first-name", label: "First name", autocomplete: "given-name", wrapper_class: "sm:col-span-3" },
+            { type: "text", id: "last-name",  name: "last-name",  label: "Last name",  autocomplete: "family-name", wrapper_class: "sm:col-span-3" },
+            { type: "text", id: "email",      name: "email",      label: "Email address", autocomplete: "email", wrapper_class: "sm:col-span-4" },
+            { type: "select", id: "country",  name: "country",    label: "Country", options: ["United States", "Canada", "Mexico"], autocomplete: "country-name", wrapper_class: "sm:col-span-3" },
+            { type: "text", id: "street-address", name: "street-address", label: "Street address", autocomplete: "street-address", wrapper_class: "col-span-full" },
+            { type: "text", id: "city",       name: "city",        label: "City", autocomplete: "address-level2", wrapper_class: "sm:col-span-2 sm:col-start-1" },
+            { type: "text", id: "region",     name: "region",      label: "State / Province", autocomplete: "address-level1", wrapper_class: "sm:col-span-2" },
+            { type: "text", id: "postal-code",name: "postal-code", label: "ZIP / Postal code", autocomplete: "postal-code", wrapper_class: "sm:col-span-2" }
+          ]
+        },
+        {
+          title:       "Notifications",
+          description: "We'll always let you know about important changes, but you pick what else you want to hear about.",
+          wrapper_class: "border-b border-gray-900/10 pb-12",
+          fields: [
+            {
+              type:         "checkbox_group",
+              legend:       "By email",
+              description:  nil,
+              wrapper_class: nil,
+              items: [
+                { id: "comments",   name: "comments",   label: "Comments",   description: "Get notified when someone posts a comment on a posting.", checked: true },
+                { id: "candidates", name: "candidates", label: "Candidates", description: "Get notified when a candidate applies for a job." },
+                { id: "offers",     name: "offers",     label: "Offers",     description: "Get notified when a candidate accepts or rejects an offer." }
+              ]
+            },
+            {
+              type:         "radio_group",
+              legend:       "Push notifications",
+              description:  "These are delivered via SMS to your mobile phone.",
+              wrapper_class: nil,
+              items: [
+                { id: "push-everything", name: "push-notifications", label: "Everything", checked: true },
+                { id: "push-email",      name: "push-notifications", label: "Same as email" },
+                { id: "push-nothing",    name: "push-notifications", label: "No push notifications" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  end
+
+  def nav_section
+    {
+      company_name: company_name,
+      logo_url:     logo_url,
+      root_path:    root_path,
+      nav_links:    nav_links,
+      login_link:   login_link
+    }
+  end
 end
+
