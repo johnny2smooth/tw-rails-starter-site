@@ -1,0 +1,157 @@
+<%#
+Locals:
+  • company_name   – String
+  • logo_url       – String
+  • root_path      – String
+  • nav_categories – Array of hashes:
+      { key:, name:, items: Array of { title:, url:, description:, icon_svg: } }
+  • demo_link      – Hash { text:, url:, icon_svg: }
+  • sales_link     – Hash { text:, url:, icon_svg: }
+  • nav_links      – Array of { title:, url: }
+  • login_link     – Hash { title:, url: }
+%>
+
+<header class="bg-white">
+  <nav aria-label="Global"
+       class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+
+    <!-- Logo -->
+    <div class="flex lg:flex-1">
+      <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
+        <span class="sr-only"><%= company_name %></span>
+        <%= image_tag logo_url, alt: company_name, class: "h-8 w-auto" %>
+      <% end %>
+    </div>
+
+    <!-- Mobile menu button -->
+    <div class="flex lg:hidden">
+      <button type="button" command="show-modal" commandfor="mobile-menu"
+              class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+        <span class="sr-only">Open main menu</span>
+        <!-- hamburger icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6">
+          <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop popovers + links -->
+    <el-popover-group class="hidden lg:flex lg:gap-x-12">
+      <% nav_categories.each do |cat| %>
+        <div class="relative">
+          <button popovertarget="desktop-menu-<%= cat[:key] %>"
+                  class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+            <%= cat[:name] %>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 flex-none text-gray-400">
+              <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd"/>
+            </svg>
+          </button>
+          <el-popover id="desktop-menu-<%= cat[:key] %>" anchor="bottom" popover
+                      class="w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition transition-discrete
+                             [--anchor-gap:--spacing(3)] backdrop:bg-transparent">
+            <div class="p-4">
+              <% cat[:items].each do |item| %>
+                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50">
+                  <div class="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                    <%= item[:icon_svg].html_safe %>
+                  </div>
+                  <div class="flex-auto">
+                    <%= link_to item[:url], class: "block font-semibold text-gray-900" do %>
+                      <span class="absolute inset-0"></span>
+                      <%= item[:title] %>
+                    <% end %>
+                    <p class="mt-1 text-gray-600"><%= item[:description] %></p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+              <%= link_to demo_link[:url],
+                          class: "flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100" do %>
+                <%= demo_link[:icon_svg].html_safe %>
+                <%= demo_link[:text] %>
+              <% end %>
+              <%= link_to sales_link[:url],
+                          class: "flex items-center justify-center gap-x-2.5 p-3 text-sm/6 font-semibold text-gray-900 hover:bg-gray-100" do %>
+                <%= sales_link[:icon_svg].html_safe %>
+                <%= sales_link[:text] %>
+              <% end %>
+            </div>
+          </el-popover>
+        </div>
+      <% end %>
+
+      <% nav_links.each do |link| %>
+        <%= link_to link[:title], link[:url],
+                    class: "text-sm/6 font-semibold text-gray-900" %>
+      <% end %>
+    </el-popover-group>
+
+    <!-- Desktop log in -->
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+      <%= link_to "#{login_link[:title]} <span aria-hidden='true'>&rarr;</span>".html_safe,
+                  login_link[:url],
+                  class: "text-sm/6 font-semibold text-gray-900" %>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <el-dialog>
+    <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+      <div tabindex="0" class="fixed inset-0 focus:outline-none"></div>
+      <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div class="flex items-center justify-between">
+          <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
+            <span class="sr-only"><%= company_name %></span>
+            <%= image_tag logo_url, alt: company_name, class: "h-8 w-auto" %>
+          <% end %>
+          <button type="button" command="close" commandfor="mobile-menu"
+                  class="-m-2.5 rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Close menu</span>
+            <!-- X icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="size-6">
+              <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="mt-6 flow-root">
+          <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6">
+              <% nav_categories.each do |cat| %>
+                <button type="button" command="--toggle" commandfor="mobile-<%= cat[:key] %>"
+                        class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                  <%= cat[:name] %>
+                  <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="size-5 flex-none in-aria-expanded:rotate-180">
+                    <path d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd"/>
+                  </svg>
+                </button>
+                <el-disclosure id="mobile-<%= cat[:key] %>" hidden class="mt-2 block space-y-2">
+                  <% cat[:items].each do |item| %>
+                    <%= link_to item[:title], item[:url],
+                                class: "block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50" %>
+                  <% end %>
+                  <%= link_to demo_link[:text], demo_link[:url],
+                              class: "block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50" %>
+                  <%= link_to sales_link[:text], sales_link[:url],
+                              class: "block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50" %>
+                </el-disclosure>
+              <% end %>
+
+              <% nav_links.each do |link| %>
+                <%= link_to link[:title], link[:url],
+                            class: "-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" %>
+              <% end %>
+            </div>
+
+            <div class="py-6">
+              <%= link_to login_link[:title], login_link[:url],
+                          class: "-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50" %>
+            </div>
+          </div>
+        </div>
+      </el-dialog-panel>
+    </dialog>
+  </el-dialog>
+</header>
