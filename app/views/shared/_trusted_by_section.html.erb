@@ -1,0 +1,24 @@
+<%#
+Locals:
+  • heading – String
+  • logos   – Array of hashes, each:
+      { src:, alt:, width:, height:, class: }
+%>
+<div class="bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <h2 class="text-center text-lg/8 font-semibold text-white">
+      <%= heading %>
+    </h2>
+    <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center
+                gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10
+                lg:mx-0 lg:max-w-none lg:grid-cols-5">
+      <% logos.each do |logo| %>
+        <%= image_tag logo[:src],
+                      alt:    logo[:alt],
+                      width:  logo[:width],
+                      height: logo[:height],
+                      class:  logo[:class] %>
+      <% end %>
+    </div>
+  </div>
+</div>

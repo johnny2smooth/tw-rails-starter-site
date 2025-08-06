@@ -383,4 +383,381 @@ class HomePagePresenter
       ]
     }
   end
+
+  def stats_section
+    {
+      stats: [
+        { label: 'Transactions every 24 hours', value: '44 million' },
+        { label: 'Assets under holding',           value: '$119 trillion' },
+        { label: 'New users annually',             value: '46,000' }
+      ]
+    }
+  end
+
+  def testimonial_section
+    {
+      logo: {
+        src:   "https://tailwindcss.com/plus-assets/img/logos/workcation-logo-indigo-600.svg",
+        alt:   "Workcation logo",
+        class: "mx-auto h-12"
+      },
+      quote: "“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”",
+      person: {
+        name: "Judith Black",
+        role: "CEO of Workcation",
+        image: {
+          src:   "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+          alt:   "Judith Black",
+          class: "mx-auto size-10 rounded-full"
+        }
+      }
+    }
+  end
+
+  def blog_section
+    {
+      title:    "From the blog",
+      subtitle: "Learn how to grow your business with our expert advice.",
+      posts: [
+        {
+          date:         "Mar 16, 2020",
+          datetime:     "2020-03-16",
+          category:     "Marketing",
+          category_url: "#",
+          title:        "Boost your conversion rate",
+          title_url:    "#",
+          excerpt:      "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+          author_name:  "Michael Foster",
+          author_url:   "#",
+          author_role:  "Co-Founder / CTO",
+          author_image: {
+            src:   "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Michael Foster",
+            class: "size-10 rounded-full bg-gray-50"
+          }
+        },
+        {
+          date:         "Mar 10, 2020",
+          datetime:     "2020-03-10",
+          category:     "Sales",
+          category_url: "#",
+          title:        "How to use search engine optimization to drive sales",
+          title_url:    "#",
+          excerpt:      "Optio cum necessitatibus dolor voluptatum provident commodi et. Qui aperiam fugiat nemo cumque.",
+          author_name:  "Lindsay Walton",
+          author_url:   "#",
+          author_role:  "Front-end Developer",
+          author_image: {
+            src:   "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Lindsay Walton",
+            class: "size-10 rounded-full bg-gray-50"
+          }
+        },
+        {
+          date:         "Feb 12, 2020",
+          datetime:     "2020-02-12",
+          category:     "Business",
+          category_url: "#",
+          title:        "Improve your customer experience",
+          title_url:    "#",
+          excerpt:      "Cupiditate maiores ullam eveniet adipisci in doloribus nulla minus. Voluptas iusto libero adipisci rem et corporis. Nostrud sint anim sunt aliqua. Nulla eu labore irure incididunt velit cillum quis magna dolore.",
+          author_name:  "Tom Cook",
+          author_url:   "#",
+          author_role:  "Director of Product",
+          author_image: {
+            src:   "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Tom Cook",
+            class: "size-10 rounded-full bg-gray-50"
+          }
+        }
+      ]
+    }
+  end
+
+  def contact_section
+    {
+      headline:    "Contact sales",
+      description: "Aute magna irure deserunt veniam aliqua magna enim voluptate.",
+      form: {
+        action: " #",
+        method: "POST",
+        fields: [
+          {
+            id:            "first-name",
+            name:          "first-name",
+            type:          "text",
+            label:         "First name",
+            autocomplete:  "given-name",
+            classes:       "block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
+            placeholder:   nil,
+            rows:          nil,
+            wrapper_class: ""
+          },
+          {
+            id:            "last-name",
+            name:          "last-name",
+            type:          "text",
+            label:         "Last name",
+            autocomplete:  "family-name",
+            classes:       "block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
+            placeholder:   nil,
+            rows:          nil,
+            wrapper_class: ""
+          },
+          {
+            id:            "company",
+            name:          "company",
+            type:          "text",
+            label:         "Company",
+            autocomplete:  "organization",
+            classes:       "block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
+            placeholder:   nil,
+            rows:          nil,
+            wrapper_class: "sm:col-span-2"
+          },
+          {
+            id:            "email",
+            name:          "email",
+            type:          "email",
+            label:         "Email",
+            autocomplete:  "email",
+            classes:       "block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
+            placeholder:   nil,
+            rows:          nil,
+            wrapper_class: "sm:col-span-2"
+          },
+          {
+            id:            "phone-number",
+            name:          "phone-number",
+            type:          "phone",
+            label:         "Phone number",
+            autocomplete:  nil,
+            classes:       "block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6",
+            placeholder:   "123-456-7890",
+            rows:          nil,
+            wrapper_class: "sm:col-span-2",
+            select: {
+              id:           "country",
+              name:         "country",
+              autocomplete: "country",
+              options:      ["US", "CA", "EU"],
+              classes:      "col-start-1 row-start-1 w-full appearance-none rounded-md py-2 pr-7 pl-3.5 text-base text-gray-500 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            },
+            icon_svg: <<~SVG
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"
+                   class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                      d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 
+                         1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 
+                         0 0 1 0-1.06Z" />
+              </svg>
+            SVG
+          },
+          {
+            id:            "message",
+            name:          "message",
+            type:          "textarea",
+            label:         "Message",
+            autocomplete:  nil,
+            classes:       "block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600",
+            placeholder:   nil,
+            rows:          4,
+            wrapper_class: "sm:col-span-2"
+          }
+        ],
+        checkbox: {
+          id:          "agree-to-policies",
+          name:        "agree-to-policies",
+          label_text:  "By selecting this, you agree to our",
+          link_text:   "privacy policy",
+          link_url:    "#"
+        },
+        submit: {
+          text:    "Let's talk",
+          classes: "block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        }
+      }
+    }
+  end
+
+  def leadership_section
+    {
+      title:       "Meet our leadership",
+      description: "We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.",
+      members: [
+        {
+          name: "Leslie Alexander",
+          role: "Co-Founder / CEO",
+          image: {
+            src:   "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Leslie Alexander",
+            class: "size-16 rounded-full outline-1 -outline-offset-1 outline-black/5"
+          }
+        },
+        {
+          name: "Michael Foster",
+          role: "Co-Founder / CTO",
+          image: {
+            src:   "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Michael Foster",
+            class: "size-16 rounded-full outline-1 -outline-offset-1 outline-black/5"
+          }
+        },
+        {
+          name: "Dries Vincent",
+          role: "Business Relations",
+          image: {
+            src:   "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Dries Vincent",
+            class: "size-16 rounded-full outline-1 -outline-offset-1 outline-black/5"
+          }
+        },
+        {
+          name: "Lindsay Walton",
+          role: "Front-end Developer",
+          image: {
+            src:   "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Lindsay Walton",
+            class: "size-16 rounded-full outline-1 -outline-offset-1 outline-black/5"
+          }
+        },
+        {
+          name: "Courtney Henry",
+          role: "Designer",
+          image: {
+            src:   "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Courtney Henry",
+            class: "size-16 rounded-full outline-1 -outline-offset-1 outline-black/5"
+          }
+        },
+        {
+          name: "Tom Cook",
+          role: "Director of Product",
+          image: {
+            src:   "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+            alt:   "Tom Cook",
+            class: "size-16 rounded-full outline-1 -outline-offset-1 outline-black/5"
+          }
+        }
+      ]
+    }
+  end
+  def workflow_section
+    {
+      eyebrow: "Deploy faster",
+      title:   "A better workflow",
+      intro:   "Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae feugiat egestas.",
+      image: {
+        src:   "https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png",
+        alt:   "App screenshot",
+        class: "w-3xl max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-228"
+      },
+      body_intro: "Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.",
+      bullets: [
+        {
+          title:       "Push to deploy.",
+          description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+          icon_svg: <<~SVG
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                 class="mt-1 size-5 flex-none text-indigo-600">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M5.5 17a4.5 4.5 0 0 1-1.44-8.765
+                       4.5 4.5 0 0 1 8.302-3.046
+                       3.5 3.5 0 0 1 4.504 4.272
+                       A4 4 0 0 1 15 17H5.5
+                       Zm3.75-2.75a.75.75 0 0 0 1.5 0
+                       V9.66l1.95 2.1a.75.75 0 1 0 1.1-1.02
+                       l-3.25-3.5a.75.75 0 0 0-1.1 0
+                       l-3.25 3.5a.75.75 0 1 0 1.1 1.02
+                       l1.95-2.1v4.59Z"/>
+            </svg>
+          SVG
+        },
+        {
+          title:       "SSL certificates.",
+          description: "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
+          icon_svg: <<~SVG
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                 class="mt-1 size-5 flex-none text-indigo-600">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2
+                       v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6
+                       a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1
+                       Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z"/>
+            </svg>
+          SVG
+        },
+        {
+          title:       "Database backups.",
+          description: "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
+          icon_svg: <<~SVG
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                 class="mt-1 size-5 flex-none text-indigo-600">
+              <path d="M4.632 3.533A2 2 0 0 1 6.577 2
+                       h6.846a2 2 0 0 1 1.945 1.533
+                       l1.976 8.234A3.489 3.489 0 0 0 16 11.5
+                       H4c-.476 0-.93.095-1.344.267l1.976-8.234Z"/>
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M4 13a2 2 0 1 0 0 4h12
+                       a2 2 0 1 0 0-4H4Zm11.24 2
+                       a.75.75 0 0 1 .75-.75H16
+                       a.75.75 0 0 1 .75.75v.01
+                       a.75.75 0 0 1-.75.75h-.01
+                       a.75.75 0 0 1-.75-.75V15
+                       Zm-2.25-.75a.75.75 0 0 0-.75.75
+                       v.01c0 .414.336.75.75.75H13
+                       a.75.75 0 0 0 .75-.75V15
+                       a.75.75 0 0 0-.75-.75h-.01Z"/>
+            </svg>
+          SVG
+        }
+      ],
+      body_middle:   "Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis odio id et. Id blandit molestie auctor fermentum dignissim. Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate et ultrices hac adipiscing egestas. Iaculis convallis ac tempor et ut. Ac lorem vel integer orci.",
+      final_heading: "No server? No problem.",
+      final_text:    "Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis ipsum eu a sed convallis diam."
+    }
+  end
+
+  def trusted_by_section
+    {
+      heading: "Trusted by the world’s most innovative teams",
+      logos: [
+        {
+          src:    "https://tailwindcss.com/plus-assets/img/logos/158x48/transistor-logo-white.svg",
+          alt:    "Transistor",
+          width:  158,
+          height: 48,
+          class:  "col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+        },
+        {
+          src:    "https://tailwindcss.com/plus-assets/img/logos/158x48/reform-logo-white.svg",
+          alt:    "Reform",
+          width:  158,
+          height: 48,
+          class:  "col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+        },
+        {
+          src:    "https://tailwindcss.com/plus-assets/img/logos/158x48/tuple-logo-white.svg",
+          alt:    "Tuple",
+          width:  158,
+          height: 48,
+          class:  "col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+        },
+        {
+          src:    "https://tailwindcss.com/plus-assets/img/logos/158x48/savvycal-logo-white.svg",
+          alt:    "SavvyCal",
+          width:  158,
+          height: 48,
+          class:  "col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
+        },
+        {
+          src:    "https://tailwindcss.com/plus-assets/img/logos/158x48/statamic-logo-white.svg",
+          alt:    "Statamic",
+          width:  158,
+          height: 48,
+          class:  "col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
+        }
+      ]
+    }
+  end
 end

@@ -1,0 +1,119 @@
+<%#
+Locals:
+  • headline    – String
+  • description – String
+  • form        – Hash with:
+      • action – String
+      • method – String
+      • fields – Array of field-hashes:
+          • id              – String
+          • name            – String
+          • type            – 'text' | 'email' | 'textarea' | 'phone'
+          • label           – String
+          • autocomplete    – String (optional)
+          • placeholder     – String (optional)
+          • classes         – String (input/textarea classes)
+          • rows            – Integer (for textarea)
+          • wrapper_class   – String (on the field’s outer <div>)
+          • select          – Hash (for phone), with:
+              • id, name, autocomplete, options:Array<String>, classes
+          • icon_svg        – String (raw SVG for phone dropdown)
+      • checkbox – Hash with:
+          • id, name, label_text, link_text, link_url
+      • submit – Hash with:
+          • text, classes
+%>
+
+<section class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
+  <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+    <div style="clip-path: polygon(74.1% 44.1%,100% 61.6%,97.5% 26.9%,85.5% 0.1%,80.7% 2%,72.5% 32.5%,60.2% 62.4%,52.4% 68.1%,47.5% 58.3%,45.2% 34.5%,27.5% 76.7%,0.1% 64.9%,17.9% 100%,27.6% 76.8%,76.1% 97.7%,74.1% 44.1%)"
+         class="relative left-1/2 -z-10 aspect-1155/678 w-144.5 max-w-none -translate-x-1/2 rotate-30
+                bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30
+                sm:left-[calc(50%-40rem)] sm:w-288.75">
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
+      <%= headline %>
+    </h2>
+    <p class="mt-2 text-lg/8 text-gray-600">
+      <%= description %>
+    </p>
+  </div>
+
+  <form action="<%= form[:action] %>" method="<%= form[:method] %>" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+      <% form[:fields].each do |f| %>
+        <div class="<%= f[:wrapper_class] %>">
+          <label for="<%= f[:id] %>" class="block text-sm/6 font-semibold text-gray-900">
+            <%= f[:label] %>
+          </label>
+          <div class="mt-2.5">
+            <% if f[:type] == 'textarea' %>
+              <textarea id="<%= f[:id] %>" name="<%= f[:name] %>" rows="<%= f[:rows] %>"
+                        class="<%= f[:classes] %>"></textarea>
+
+            <% elsif f[:type] == 'phone' %>
+              <div class="flex rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300
+                          has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2
+                          has-[input:focus-within]:outline-indigo-600">
+                <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+                  <select id="<%= f[:select][:id] %>"
+                          name="<%= f[:select][:name] %>"
+                          autocomplete="<%= f[:select][:autocomplete] %>"
+                          class="<%= f[:select][:classes] %>">
+                    <% f[:select][:options].each do |opt| %>
+                      <option><%= opt %></option>
+                    <% end %>
+                  </select>
+                  <%= f[:icon_svg].html_safe %>
+                </div>
+                <input id="<%= f[:id] %>" type="text" name="<%= f[:name] %>"
+                       placeholder="<%= f[:placeholder] %>"
+                       class="<%= f[:classes] %>" />
+              </div>
+
+            <% else %>
+              <input id="<%= f[:id] %>" type="<%= f[:type] %>" name="<%= f[:name] %>"
+                     <%= f[:autocomplete] ? "autocomplete=\"#{f[:autocomplete]}\"" : "" %>
+                     <%= f[:placeholder] ? "placeholder=\"#{f[:placeholder]}\"" : "" %>
+                     class="<%= f[:classes] %>" />
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="flex gap-x-4 sm:col-span-2">
+        <div class="flex h-6 items-center">
+          <div class="group relative inline-flex w-8 shrink-0 rounded-full bg-gray-200 p-px
+                      inset-ring inset-ring-gray-900/5 outline-offset-2 outline-indigo-600
+                      transition-colors duration-200 ease-in-out has-checked:bg-indigo-600
+                      has-focus-visible:outline-2">
+            <span class="size-4 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5
+                         transition-transform duration-200 ease-in-out group-has-checked:translate-x-3.5">
+            </span>
+            <input id="<%= form[:checkbox][:id] %>"
+                   type="checkbox"
+                   name="<%= form[:checkbox][:name] %>"
+                   aria-label="<%= form[:checkbox][:label_text] %>"
+                   class="absolute inset-0 appearance-none focus:outline-hidden" />
+          </div>
+        </div>
+        <label for="<%= form[:checkbox][:id] %>" class="text-sm/6 text-gray-600">
+          <%= form[:checkbox][:label_text] %>
+          <a href="<%= form[:checkbox][:link_url] %>"
+             class="font-semibold whitespace-nowrap text-indigo-600">
+            <%= form[:checkbox][:link_text] %>
+          </a>.
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <button type="submit" class="<%= form[:submit][:classes] %>">
+        <%= form[:submit][:text] %>
+      </button>
+    </div>
+  </form>
+</section>
