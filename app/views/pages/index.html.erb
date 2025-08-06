@@ -2,25 +2,20 @@
 
 <%# — HEADER / NAV — %>
 <%= render 'shared/header',
-      company_name: 'Your Company',
-      logo_url:    'https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600',
-      root_path:   '#',
-      nav_links:   @nav_links,
-      login_link:  @login_link %>
+      company_name: @page.company_name,
+      logo_url:     @page.logo_url,
+      root_path:    @page.root_path,
+      nav_links:    @page.nav_links,
+      login_link:   @page.login_link %>
 
 <%# — HERO BANNER — %>
 <%= render 'shared/hero_banner',
-      title:        'Data to enrich your online business',
-      subtitle:     'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.',
-      announcement: @announcement,
-      primary:      @primary,
-      secondary:    @secondary %>
+      title:        @page.hero_title,
+      subtitle:     @page.hero_subtitle,
+      announcement: @page.hero_announcement,
+      primary:      @page.hero_primary,
+      secondary:    @page.hero_secondary %>
 
-<%# — FEATURE SECTION — %>
-<%= render 'shared/feature_section', @feature_section %>
-
-<%# — DARK CTA SECTION — %>
-<%= render 'shared/dark_cta_section', @cta_section %>
-
-<%# — BENTO CARD SECTION — %>
-<%= render 'shared/bento_card_section', @bento_card_section%>
+<%= render 'shared/feature_section',  @page.feature_section %>
+<%= render 'shared/bento_card_section',    @page.cards_section   %>
+<%= render 'shared/dark_cta_section', @page.cta_section     %>

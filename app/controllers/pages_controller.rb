@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @page = HomePagePresenter.new
     @nav_links = [
       { title: 'Product',     path: '#' },
       { title: 'Features',    path: '#' },
