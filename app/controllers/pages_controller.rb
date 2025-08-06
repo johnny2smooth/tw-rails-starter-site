@@ -103,5 +103,109 @@ class PagesController < ApplicationController
                 sm:w-228 md:-ml-4 lg:-ml-0'
       }
     }
+
+    @cta_section = {
+      title: 'Boost your productivity. Start using our app today.',
+      copy:  'Ac euismod vel sit maecenas id pellentesque eu sed consectetur. ' \
+             'Malesuada adipiscing sagittis vel nulla.',
+      primary: {
+        text: 'Get started',
+        url:  '#',
+        html_options: {
+          class: 'rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold ' \
+                 'text-gray-900 shadow-xs hover:bg-gray-100 ' \
+                 'focus-visible:outline-2 focus-visible:outline-offset-2 ' \
+                 'focus-visible:outline-white'
+        }
+      },
+      secondary: {
+        text: 'Learn more',
+        url:  '#',
+        html_options: {
+          class: 'text-sm/6 font-semibold text-white hover:text-gray-100'
+        }
+      },
+      image: {
+        src:   'https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png',
+        alt:   'App screenshot',
+        class: 'absolute top-0 left-0 w-228 max-w-none rounded-md bg-white/5 ' \
+               'ring-1 ring-white/10'
+      }
+    }
+
+    @bento_card_section = {
+      eyebrow:  'Deploy faster',
+      headline: 'Everything you need to deploy your app',
+      cards: [
+        {
+          wrapper_classes: 'relative lg:row-span-2',
+          bg_extra:        'lg:rounded-l-4xl',
+          round_extra:     'lg:rounded-l-[calc(2rem+1px)]',
+          inner_extra:     'pb-3 sm:px-10 sm:pt-10 sm:pb-0',
+          title_align:     '',
+          desc_align:      '',
+          title:           'Mobile friendly',
+          description:     'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
+          media_container: '@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm',
+          image: {
+            src:   'https://tailwindcss.com/plus-assets/img/component-images/bento-03-mobile-friendly.png',
+            alt:   'Mobile friendly demo',
+            class: 'absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl'
+          },
+          overlay_extra: 'lg:rounded-l-4xl'
+        },
+        {
+          wrapper_classes: 'relative max-lg:row-start-1',
+          bg_extra:        'max-lg:rounded-t-4xl',
+          round_extra:     'max-lg:rounded-t-[calc(2rem+1px)]',
+          inner_extra:     'sm:px-10 sm:pt-10',
+          title_align:     'max-lg:text-center',
+          desc_align:      'max-lg:text-center',
+          title:           'Performance',
+          description:     'Lorem ipsum, dolor sit amet consectetur adipisicing elit maiores impedit.',
+          media_container: 'flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2',
+          image: {
+            src:   'https://tailwindcss.com/plus-assets/img/component-images/bento-03-performance.png',
+            alt:   'Performance metrics screenshot',
+            class: 'w-full max-lg:max-w-xs'
+          },
+          overlay_extra: 'max-lg:rounded-t-4xl'
+        },
+        {
+          wrapper_classes: 'relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2',
+          bg_extra:        '',
+          round_extra:     '',
+          inner_extra:     'sm:px-10 sm:pt-10',
+          title_align:     'max-lg:text-center',
+          desc_align:      'max-lg:text-center',
+          title:           'Security',
+          description:     'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi.',
+          media_container: '@container flex flex-1 items-center max-lg:py-6 lg:pb-2',
+          image: {
+            src:   'https://tailwindcss.com/plus-assets/img/component-images/bento-03-security.png',
+            alt:   'Security overview graphic',
+            class: 'h-[min(152px,40cqw)] object-cover'
+          },
+          overlay_extra: ''
+        },
+        {
+          wrapper_classes: 'relative lg:row-span-2',
+          bg_extra:        'max-lg:rounded-b-4xl lg:rounded-r-4xl',
+          round_extra:     'max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]',
+          inner_extra:     'pb-3 sm:px-10 sm:pt-10 sm:pb-0',
+          title_align:     'max-lg:text-center',
+          desc_align:      'max-lg:text-center',
+          title:           'Powerful APIs',
+          description:     'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget sem sodales gravida.',
+          media_container: 'relative min-h-120 w-full grow',
+          image: {
+            src:   'https://tailwindcss.com/plus-assets/img/component-images/bento-03-apis.png',
+            alt:   'Code snippet example',
+            class: 'absolute top-10 right-0 bottom-0 left-10 overflow-hidden rounded-tl-xl bg-gray-900 shadow-2xl outline outline-white/10'
+          },
+          overlay_extra: 'max-lg:rounded-b-4xl lg:rounded-r-4xl'
+        }
+      ]
+    }
   end
 end

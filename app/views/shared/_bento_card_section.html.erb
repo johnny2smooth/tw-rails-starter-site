@@ -1,0 +1,61 @@
+<%# 
+Locals:
+  • eyebrow  – String
+  • headline – String
+  • cards    – Array of hashes, each with:
+      • wrapper_classes    – String (grid positioning)
+      • bg_extra           – String (additional bg-div classes)
+      • round_extra        – String (additional rounding classes)
+      • inner_extra        – String (padding overrides)
+      • title_align        – String (e.g. "max-lg:text-center")
+      • desc_align         – String
+      • title              – String
+      • description        – String
+      • media_container    – String (container for img or html)
+      • image              – Hash with :src, :alt, :class
+      • overlay_extra      – String (extra classes for outline div)
+%>
+
+<div class="bg-gray-50 py-24 sm:py-32">
+  <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+    <h2 class="text-center text-base/7 font-semibold text-indigo-600">
+      <%= eyebrow %>
+    </h2>
+    <p class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold
+               tracking-tight text-balance text-gray-950 sm:text-5xl">
+      <%= headline %>
+    </p>
+
+    <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
+      <% cards.each do |c| %>
+        <div class="<%= c[:wrapper_classes] %>">
+          <div class="absolute inset-px rounded-lg bg-white <%= c[:bg_extra] %>"></div>
+          <div class="relative flex h-full flex-col overflow-hidden
+                      rounded-[calc(var(--radius-lg)+1px)] <%= c[:round_extra] %>">
+
+            <div class="px-8 pt-8 <%= c[:inner_extra] %>">
+              <p class="mt-2 text-lg font-medium tracking-tight
+                         text-gray-950 <%= c[:title_align] %>">
+                <%= c[:title] %>
+              </p>
+              <p class="mt-2 max-w-lg text-sm/6 text-gray-600
+                         <%= c[:desc_align] %>">
+                <%= c[:description] %>
+              </p>
+            </div>
+
+            <div class="<%= c[:media_container] %>">
+              <%= image_tag c[:image][:src],
+                            alt:   c[:image][:alt],
+                            class: c[:image][:class] %>
+            </div>
+          </div>
+
+          <div class="pointer-events-none absolute inset-px rounded-lg
+                      shadow-sm outline outline-black/5 <%= c[:overlay_extra] %>">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
