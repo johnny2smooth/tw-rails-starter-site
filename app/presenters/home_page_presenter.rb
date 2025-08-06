@@ -247,4 +247,140 @@ class HomePagePresenter
       }
     }
   end
+
+  def pricing_section
+    {
+      eyebrow:  "Pricing",
+      headline: "Choose the right plan for you",
+      copy:     "Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer loyalty, and driving sales.",
+      tiers: [
+        {
+          id:                    "tier-hobby",
+          name:                  "Hobby",
+          price:                 "$29",
+          interval:              "month",
+          container_classes:     "rounded-3xl rounded-t-3xl bg-white/60 p-8 ring-1 ring-gray-900/10 sm:mx-8 sm:rounded-b-none sm:p-10 lg:mx-0 lg:rounded-tr-none lg:rounded-bl-3xl",
+          heading_classes:       "text-base/7 font-semibold text-indigo-600",
+          price_classes:         "text-5xl font-semibold tracking-tight text-gray-900",
+          interval_classes:      "text-base text-gray-500",
+          description_classes:   "mt-6 text-base/7 text-gray-600",
+          features_list_classes: "mt-8 space-y-3 text-sm/6 text-gray-600 sm:mt-10",
+          features: [
+            "25 products",
+            "Up to 10,000 subscribers",
+            "Advanced analytics",
+            "24-hour support response time"
+          ],
+          feature_icon_svg: <<~SVG,
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                 class="h-6 w-5 flex-none text-indigo-600">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5
+                       a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06
+                       l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"/>
+            </svg>
+          SVG
+          primary: {
+            text: "Get started today",
+            url:  "#",
+            html_options: {
+              class: "mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-indigo-600 inset-ring inset-ring-indigo-200 hover:inset-ring-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-10"
+            }
+          }
+        },
+        {
+          id:                    "tier-enterprise",
+          name:                  "Enterprise",
+          price:                 "$99",
+          interval:              "month",
+          container_classes:     "relative rounded-3xl bg-gray-900 p-8 shadow-2xl ring-1 ring-gray-900/10 sm:p-10",
+          heading_classes:       "text-base/7 font-semibold text-indigo-400",
+          price_classes:         "text-5xl font-semibold tracking-tight text-white",
+          interval_classes:      "text-base text-gray-400",
+          description_classes:   "mt-6 text-base/7 text-gray-300",
+          features_list_classes: "mt-8 space-y-3 text-sm/6 text-gray-300 sm:mt-10",
+          features: [
+            "Unlimited products",
+            "Unlimited subscribers",
+            "Advanced analytics",
+            "Dedicated support representative",
+            "Marketing automations",
+            "Custom integrations"
+          ],
+          feature_icon_svg: <<~SVG,
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                 class="h-6 w-5 flex-none text-indigo-400">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5
+                       a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06
+                       l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"/>
+            </svg>
+          SVG
+          primary: {
+            text: "Get started today",
+            url:  "#",
+            html_options: {
+              class: "mt-8 block rounded-md bg-indigo-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 sm:mt-10"
+            }
+          }
+        }
+      ]
+    }
+  end
+
+  def newsletter_section
+    {
+      headline:    "Subscribe to our newsletter",
+      description: "Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt dolore.",
+      form: {
+        label:           "Email address",
+        input_id:        "email-address",
+        input_name:      "email",
+        placeholder:     "Enter your email",
+        input_classes:   "min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500 sm:text-sm/6",
+        button_text:     "Subscribe",
+        button_classes:  "flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+      },
+      stats: [
+        {
+          title:       "Weekly articles",
+          description: "Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.",
+          icon_svg: <<~SVG
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" aria-hidden="true"
+                 class="size-6 text-white">
+              <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25
+                       h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21
+                       h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9
+                       h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15
+                       h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75
+                       V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25
+                       h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25
+                       h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5
+                       h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          SVG
+        },
+        {
+          title:       "No spam",
+          description: "Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim.",
+          icon_svg: <<~SVG
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.5" aria-hidden="true"
+                 class="size-6 text-white">
+              <path d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575
+                       1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575
+                       1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75
+                       6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732
+                       a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471
+                       1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9
+                       7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          SVG
+        }
+      ]
+    }
+  end
 end
