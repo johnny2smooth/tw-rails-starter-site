@@ -1,0 +1,33 @@
+<!-- app/views/shared/_footer.html.erb -->
+<%#
+Locals:
+  • nav_links    – Array of { title:, url: }
+  • legal_links  – Array of { title:, url: }
+  • company_name – String
+  • year         – Integer
+%>
+<footer class="bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-12 lg:flex lg:items-center lg:justify-between">
+    <!-- Primary nav repeated in footer -->
+    <div class="flex justify-center space-x-6 lg:justify-start">
+      <% nav_links.each do |link| %>
+        <%= link_to link[:title], link[:url],
+                    class: "text-sm px-4 text-gray-500 hover:text-gray-900" %>
+      <% end %>
+    </div>
+
+    <!-- Legal links -->
+    <div class="mt-8 flex justify-center space-x-6 lg:mt-0 lg:justify-end">
+      <% legal_links.each do |link| %>
+        <%= link_to link[:title], link[:url],
+                    class: "text-sm px-4 text-gray-500 hover:text-gray-900" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200">
+    <p class="mt-8 text-center text-sm text-gray-500">
+      &copy; <%= year %> <%= company_name %>. All rights reserved.
+    </p>
+  </div>
+</footer>
