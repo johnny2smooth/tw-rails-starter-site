@@ -43,13 +43,12 @@ class PagePresenter
     [
       { title: "Product",     url: page_path("product")     },
       { title: "Features",    url: page_path("features")    },
-      { title: "Marketplace", url: page_path("marketplace") },
       { title: "Company",     url: page_path("company")     }
     ]
   end
 
   def login_link
-    { title: "Log in", url: "#" }
+    { title: "Sign In", url: page_path("sign-in") }
   end
 
   # Default hero/pricing/etc delegate to nil or no-ops
