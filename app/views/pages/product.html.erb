@@ -1,17 +1,8 @@
-
 <!-- app/views/pages/product.html.erb -->
-<%= render 'shared/header', @page.header_section %>
-
 <main class="space-y-24">
-  <!-- Hero / banner -->
   <!-- Features overview -->
   <%= render 'shared/feature_section', @page.feature_section %>
-
   <!-- Pricing table -->
   <%= render 'shared/pricing_section', @page.pricing_section %>
-
-  <!-- Testimonials, blog, etc… -->
-  <%= render 'shared/testimonial_section', @page.testimonial_section %>
+  <%= render 'shared/bento_card_section', @page.bento_card_section %>
 </main>
-
-<%# render 'shared/footer', @page.footer_section %>
