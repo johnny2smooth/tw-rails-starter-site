@@ -1,2 +1,5 @@
 <%= render 'shared/hero_banner', @page.hero_banner_section %>
-<%= render 'shared/newsletter_section', @page.newsletter_section %>
+<%= render 'shared/newsletter_section',
+      @page.newsletter_section
+        .merge(headline:   "Stay in the loop!",
+               form:       @page.newsletter_section[:form].merge(button_text: "Subscribe Later H8r")) %>
