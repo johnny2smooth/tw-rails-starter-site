@@ -14,7 +14,7 @@ class PagePresenter
       { title: "Company",     url: page_path("company")     }
     ]
   end
-  def login_link = { title: "Log in", url: "#" }
+  def login_link = { title: "Log in", url: page_path("sign-in") }
 
   # --- sections (memoized; allow inline overrides) ---
   def header_section(overrides = {})
