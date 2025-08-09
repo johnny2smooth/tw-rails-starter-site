@@ -1,8 +1,6 @@
 <!-- app/views/pages/product.html.erb -->
-<main class="space-y-24">
-  <!-- Features overview -->
-  <%= render 'shared/feature_section', @page.feature_section %>
-  <!-- Pricing table -->
-  <%= render 'shared/pricing_section', @page.pricing_section %>
-  <%= render 'shared/bento_card_section', @page.bento_card_section %>
-</main>
+<!-- Features overview -->
+<%= render 'shared/feature', @page.feature_section %>
+<!-- Pricing table -->
+<%= render 'shared/pricing', @page.pricing_section %>
+<%= render 'shared/bento_card', @page.bento_card_section %>
