@@ -11,7 +11,6 @@ class PagePresenter
     [
       { title: "Product",     url: page_path("product")     },
       { title: "Features",    url: page_path("features")    },
-      { title: "Marketplace", url: page_path("marketplace") },
       { title: "Company",     url: page_path("company")     }
     ]
   end
