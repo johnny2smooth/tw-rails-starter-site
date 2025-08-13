@@ -4,7 +4,7 @@ module Sections
   class Newsletter < Section
     def self.defaults
       {
-        headline:    "Subscribe to our newsletter",
+        headline:    "Subscribe to our news",
         description: "Nostrud amet eu ullamco nisi aute in ad minim nostrud.",
         form: {
           label:          "Email address",
