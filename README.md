@@ -10,11 +10,11 @@
 
 Here are a few areas where I’d love to get your input—so we can make sure this foundation really fits your long-term goals:
 
-Presenter Scope & Complexity
+1. Presenter Scope & Complexity
 
-1. Are you comfortable having all your page data live in these presenter classes? At what point would you consider extracting smaller objects (e.g. a HeroComponent PORO or a ViewComponent) instead of piling everything onto one presenter?
+~~Are you comfortable having all your page data live in these presenter classes? At what point would you consider extracting smaller objects (e.g. a HeroComponent PORO or a ViewComponent) instead of piling everything onto one presenter?~~
 
-How do you plan to test these presenters? Do you have a strategy (unit tests, snapshot tests) to catch regressions as you tweak partials or data shapes?
+~~How do you plan to test these presenters? Do you have a strategy (unit tests, snapshot tests) to catch regressions as you tweak partials or data shapes?~~
 
 2. Inline Overrides vs. Defaults
 
